@@ -24,11 +24,14 @@ public class Leukocyte : MonoBehaviour
         rb.transform.position = newPosition;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<UterusGame>().reduceHealth();
+        } else if(collision.gameObject.tag == "Drone")
+        {
+            collision.gameObject.GetComponent<SpermDrone>().canMove = false;
         }
     }
 

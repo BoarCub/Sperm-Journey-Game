@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Acid
   - Goal
+  - Drone
   layers:
   - Default
   - TransparentFX
