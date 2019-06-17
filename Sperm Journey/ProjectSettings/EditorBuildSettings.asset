@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FallopainTubesScene.unity
     guid: 209935a2d06de154fa448189e3beb57c
+  - enabled: 1
+    path: Assets/Scenes/Instruction.unity
+    guid: 4c4bf040b7af7f74f86d65a15932751a
   m_configObjects: {}

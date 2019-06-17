@@ -18,6 +18,11 @@ public class MainMenuControl : MonoBehaviour
         
     }
 
+    public void Help()
+    {
+        SceneManager.LoadScene("Instruction");
+    }
+
     public void Quit()
     {
         Application.Quit();
