@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
     public Transform target;
     public float damping = 1;
     public float lookAheadFactor = 3;
@@ -16,6 +15,9 @@ public class CameraFollow : MonoBehaviour
     private Vector3 m_CurrentVelocity;
     private Vector3 m_LookAheadPos;
 
+    public float bottomBound;
+    public float topBound;
+
     // Use this for initialization
     private void Start()
     {
@@ -24,17 +26,17 @@ public class CameraFollow : MonoBehaviour
         transform.parent = null;
     }
 
+
     // Update is called once per frame
     private void Update()
     {
         // only update lookahead pos if accelerating or changed direction
         float xMoveDelta = (target.position - m_LastTargetPosition).x;
-        float yMoveDelta = (target.position - m_LastTargetPosition).y;
 
-        bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold || Mathf.Abs(yMoveDelta) > lookAheadMoveThreshold;
+        bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
         if (updateLookAheadTarget)
-        {   
+        {
             m_LookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
         }
         else
@@ -45,9 +47,19 @@ public class CameraFollow : MonoBehaviour
         Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
+        if(newPos.y < bottomBound)
+        {
+            newPos = new Vector3(newPos.x, bottomBound, newPos.z);
+        }
+
+        if (newPos.y > topBound)
+        {
+            newPos = new Vector3(newPos.x, topBound, newPos.z);
+        }
+
         transform.position = newPos;
 
         m_LastTargetPosition = target.position;
-    }
 
+    }
 }
