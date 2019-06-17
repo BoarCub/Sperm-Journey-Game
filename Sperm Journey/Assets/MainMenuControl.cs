@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
-public class SpermAnimation : MonoBehaviour
+public class MainMenuControl : MonoBehaviour
 {
-
-    private float speed = 1f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +15,17 @@ public class SpermAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y - speed * Time.deltaTime);
+        
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
+    }
+
 }
