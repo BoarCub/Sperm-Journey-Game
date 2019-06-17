@@ -22,6 +22,9 @@ public class CervixGame : MonoBehaviour
 
     public AudioClip death;
     public AudioClip winClip;
+    public AudioClip timeClose;
+
+    private bool timeCloseStarted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +89,15 @@ public class CervixGame : MonoBehaviour
         }
 
         text.text = "Time: " + (int)(timeLeft);
+
+        if(timeLeft < 5 && !timeCloseStarted)
+        {
+            AudioSource audioSource = FindObjectOfType<AudioSource>();
+            audioSource.clip = timeClose;
+            audioSource.Play();
+            audioSource.loop = false;
+            timeCloseStarted = true;
+        }
 
     }
 

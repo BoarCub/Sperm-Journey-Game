@@ -1083,6 +1083,7 @@ MonoBehaviour:
   win: {fileID: 1136803495}
   death: {fileID: 8300000, guid: 05b96f0edbfbd5f4ebcbee56b3bdcca7, type: 3}
   winClip: {fileID: 8300000, guid: 8e591351abdf6254794d48afe7466451, type: 3}
+  timeClose: {fileID: 8300000, guid: c687acdf7712e184a984618b369ecf2e, type: 3}
 --- !u!70 &447915191
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5231,6 +5232,7 @@ MonoBehaviour:
   win: {fileID: 0}
   death: {fileID: 0}
   winClip: {fileID: 0}
+  timeClose: {fileID: 0}
 --- !u!1 &1817733504
 GameObject:
   m_ObjectHideFlags: 0
