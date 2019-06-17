@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UterusScene.unity
     guid: 6e8f31bbe624eea47bcadc2559a728df
+  - enabled: 1
+    path: Assets/Scenes/FallopainTubesScene.unity
+    guid: 209935a2d06de154fa448189e3beb57c
   m_configObjects: {}
