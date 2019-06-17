@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cervix.unity
     guid: 693f04b5422f0914caad1ff58cdeb717
+  - enabled: 1
+    path: Assets/Scenes/UterusScene.unity
+    guid: 6e8f31bbe624eea47bcadc2559a728df
   m_configObjects: {}
