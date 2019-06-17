@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class VaginaGame : MonoBehaviour
+public class CervixGame : MonoBehaviour
 {
 
-    public float health = 100;
+    public float timeStarting = 30f;
+    public float timeLeft = 30f;
+
     public float healthRate = 0.5f;
 
     private Rigidbody2D rb;
@@ -25,18 +27,18 @@ public class VaginaGame : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        text.text = "Health: 100/100";
+        text.text = "Time: " + (int)(timeStarting);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        reduceTime();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Goal")
+        if (collision.gameObject.tag == "Goal")
         {
             Win();
         }
@@ -73,17 +75,17 @@ public class VaginaGame : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void reduceHealth()
+    public void reduceTime()
     {
-        health -= healthRate * Time.deltaTime;
+        timeLeft -= Time.deltaTime;
 
-        if(health < 0)
+        if (timeLeft < 0)
         {
-            health = 0;
+            timeLeft = 0;
             GameOver();
         }
 
-        text.text = "Health: " + (int)(health) + "/100";
+        text.text = "Time: " + (int)(timeLeft);
 
     }
 
