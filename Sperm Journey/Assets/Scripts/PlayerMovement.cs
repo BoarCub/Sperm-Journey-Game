@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    public bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,41 +31,55 @@ public class PlayerMovement : MonoBehaviour
 
         float currentAngle = rb.transform.localEulerAngles.z;
 
-        if(vertical > 0)
+        if (canMove)
         {
-            if(horizontal > 0)
+
+            if (vertical > 0)
             {
-                currentAngle = -45;
-            } else if(horizontal < 0)
-            {
-                currentAngle = 45;
+                if (horizontal > 0)
+                {
+                    currentAngle = -45;
+                }
+                else if (horizontal < 0)
+                {
+                    currentAngle = 45;
+                }
+                else
+                {
+                    currentAngle = 0;
+                }
             }
-            else
+            else if (vertical < 0)
             {
-                currentAngle = 0;
+                if (horizontal > 0)
+                {
+                    currentAngle = -135;
+                }
+                else if (horizontal < 0)
+                {
+                    currentAngle = 135;
+                }
+                else
+                {
+                    currentAngle = -180;
+                }
             }
-        } else if(vertical < 0)
+            else if (horizontal > 0)
+            {
+                currentAngle = -90;
+            }
+            else if (horizontal < 0)
+            {
+                currentAngle = 90;
+            }
+
+        }
+        else
         {
-            if(horizontal > 0)
-            {
-                currentAngle = -135;
-            } else if(horizontal < 0)
-            {
-                currentAngle = 135;
-            }
-            else
-            {
-                currentAngle = -180;
-            }
-        } else if(horizontal > 0)
-        {
-            currentAngle = -90;
-        } else if(horizontal < 0)
-        {
-            currentAngle = 90;
+            rb.velocity = new Vector2(0, 0);
         }
 
-        if(horizontal != 0 || vertical != 0)
+        if((horizontal != 0 || vertical != 0) && canMove)
         {
             animator.SetBool("isMoving", true);
         }

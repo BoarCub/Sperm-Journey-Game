@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpermDrone : MonoBehaviour
+public class Lactobacillus : MonoBehaviour
 {
 
-    protected Rigidbody2D rb;
-    protected Animator animator;
+    private Rigidbody2D rb;
 
-    public float speed = 8;
+    public float speed;
 
-    public bool canMove = true;
+    VaginaGame game;
 
-    // Start is called before the first frame update
     void Start()
     {
+
+        game = FindObjectOfType<VaginaGame>();
+
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
 
-        float randomAngle = Random.Range(-45, 45);
+        float randomAngle = Random.Range(-180, 180);
 
-        rb.transform.rotation =  Quaternion.Euler(rb.transform.localRotation.x, rb.transform.localRotation.y, randomAngle);
+        rb.transform.rotation = Quaternion.Euler(rb.transform.localRotation.x, rb.transform.localRotation.y, randomAngle);
 
         float velocityY = Mathf.Cos(randomAngle * Mathf.Deg2Rad) * speed;
         float velocityX = -Mathf.Sin(randomAngle * Mathf.Deg2Rad) * speed;
@@ -31,19 +31,9 @@ public class SpermDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(!canMove)
+        if(Vector2.Distance(transform.position, game.transform.position) < 2.96)
         {
-            rb.velocity = new Vector2(0, 0);
-        }
-
-        if(rb.velocity.x != 0 || rb.velocity.y != 0)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
+            game.reduceHealth();
         }
     }
 
@@ -58,5 +48,4 @@ public class SpermDrone : MonoBehaviour
 
         rb.velocity = new Vector2(velocityX, velocityY);
     }
-
 }
